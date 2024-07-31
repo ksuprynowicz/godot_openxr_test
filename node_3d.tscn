@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://dfcafes21d1dj"]
+
+[ext_resource type="Script" path="res://node_3d.gd" id="1_aujra"]
+[ext_resource type="PackedScene" uid="uid://bxijcvmqy5g3n" path="res://sponza/Sponza.dae" id="1_eyvf8"]
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_ycmhd"]
+
+[sub_resource type="Sky" id="Sky_posvm"]
+sky_material = SubResource("PhysicalSkyMaterial_ycmhd")
+
+[sub_resource type="Environment" id="Environment_3khcc"]
+sky = SubResource("Sky_posvm")
+sky_rotation = Vector3(0, 0.225147, 0)
+reflected_light_source = 2
+sdfgi_enabled = true
+sdfgi_use_occlusion = true
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_kqarh"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_aujra")
+
+[node name="Sponza" parent="." instance=ExtResource("1_eyvf8")]
+
+[node name="player" type="Node3D" parent="."]
+transform = Transform3D(-0.041213, 0, 0.99915, 0, 1, 0, -0.99915, 0, -0.041213, 38.2726, 7.35378, 0)
+
+[node name="XROrigin3D" type="XROrigin3D" parent="player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.41415, 0, -7.54572)
+
+[node name="XRCamera3D" type="XRCamera3D" parent="player/XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.18703, -0.841927, -0.557806)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_3khcc")
+camera_attributes = SubResource("CameraAttributesPractical_kqarh")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
